@@ -50,3 +50,9 @@ class DishTypeUpdateView(generic.UpdateView):
 class DishTypeDeleteView(generic.DeleteView):
     model = DishType
     success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishListView(generic.ListView):
+    model = Dish
+    paginate_by = 5
+    queryset = Dish.objects.all().select_related("DishType")
