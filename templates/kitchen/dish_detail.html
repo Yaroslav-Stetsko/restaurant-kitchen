@@ -12,14 +12,14 @@
     </a>
   </h1>
   <p>Dish Type: ({{ dish.dish_type.name }})</p>
-
-
-
-
   <hr>
+  <h3>Description</h3>
+  <p>{{ dish.description }}</p>
+  <hr>
+  <h3>Cooks</h3>
   <ul>
     {% for cook in dish.cooks.all %}
-      <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
+      <li>{{ cook.first_name }} {{ cook.last_name }}</li>
     {% endfor %}
   </ul>
 {% endblock %}
