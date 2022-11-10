@@ -27,7 +27,6 @@ def index(request):
 
 class DishTypeListView(generic.ListView):
     model = DishType
-    # context_object_name = "dish_type_list"
     template_name = "kitchen/dishtype_list.html"
     paginate_by = 5
     queryset = DishType.objects.all()

@@ -25,7 +25,7 @@ urlpatterns = [
         DishTypeDeleteView.as_view(),
         name="dish-type-delete",
     ),
-    path("dishes/", DishListView.as_view(), name="car-list"),
+    path("dishes/", DishListView.as_view(), name="dish-list"),
 
 ]
 
