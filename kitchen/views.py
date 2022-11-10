@@ -76,3 +76,9 @@ class DishDeleteView(generic.DeleteView):
 
 class DishDetailView(generic.DetailView):
     model = Dish
+
+
+class CookListView(generic.ListView):
+    model = Cook
+    paginate_by = 7
+    queryset = Cook.objects.all()
