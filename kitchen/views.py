@@ -55,7 +55,7 @@ class DishTypeDeleteView(generic.DeleteView):
 class DishListView(generic.ListView):
     model = Dish
     paginate_by = 5
-    queryset = Dish.objects.all().select_related("DishType")
+    queryset = Dish.objects.all().select_related("dish_type")
 
 
 class DishCreateView(generic.CreateView):
