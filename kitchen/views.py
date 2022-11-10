@@ -27,8 +27,8 @@ def index(request):
 
 class DishTypeListView(generic.ListView):
     model = DishType
-    context_object_name = "dish_type_list"
-    template_name = "kitchen/dish_type_list.html"
+    # context_object_name = "dish_type_list"
+    template_name = "kitchen/dishtype_list.html"
     paginate_by = 5
     queryset = DishType.objects.all()
 
@@ -36,6 +36,12 @@ class DishTypeListView(generic.ListView):
 class DishTypeCreateView(generic.CreateView):
     model = DishType
     fields = "__all__"
-    context_object_name = "dish_type_form"
+    paginate_by = 7
+    success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishTypeUpdateView(generic.UpdateView):
+    model = DishType
+    fields = "__all__"
     paginate_by = 7
     success_url = reverse_lazy("kitchen:dish-type-list")

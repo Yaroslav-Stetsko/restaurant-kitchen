@@ -9,7 +9,7 @@
     </a>
   </h1>
 
-  {% if dish_type_list %}
+  {% if dishtype_list %}
     <form action="" method="get" class="form-inline">
     {{ search_form|crispy }}
     <input type="submit" value="🔍" class="btn btn-secondary">
@@ -22,13 +22,13 @@
         <th>Delete</th>
       </tr>
 
-      {% for dish_type in dish_type_list %}
+      {% for dishtype in dishtype_list %}
         <tr>
           <td>
-              {{ dish_type.id }}
+              {{ dishtype.id }}
           </td>
           <td>
-              {{ dish_type.name }}
+              {{ dishtype.name }}
           </td>
           <td>
               <a href="#">
