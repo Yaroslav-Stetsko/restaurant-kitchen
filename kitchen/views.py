@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from kitchen.forms import CookCreationForm
 from kitchen.models import Cook, Dish, DishType
 
 
@@ -86,5 +87,4 @@ class CookListView(generic.ListView):
 
 class CookCreateView(generic.CreateView):
     model = Cook
-    queryset = Cook.objects.all().prefetch_related("dishes__dish_type")
-    fields = "__all__"
+    form_class = CookCreationForm
