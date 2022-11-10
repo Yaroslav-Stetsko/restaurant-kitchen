@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="text-center">
     <h1>Kitchen Home</h1>
     <p>Welcome to the Best Kitchen ever!</p>
     <h2>Dynamic content</h2>
     <p>The Restaurant Kitchen has the following record counts:</p>
-    <ul>
+    <ul class="list-unstyled">
         <li><strong>Dishes:</strong> {{ num_dishes }}</li>
         <li><strong>Cooks:</strong> {{ num_cooks }}</li>
         <li><strong>Dish Types:</strong> {{ num_dish_types }}</li>
@@ -14,5 +15,7 @@
     <p>You have visited this page
         {{ num_visits }} time{{ num_visits|pluralize }}.
     </p>
+  </div>
+
 
 {% endblock %}

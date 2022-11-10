@@ -20,7 +20,8 @@
    <div class="ml-3">
    {% for dish in cook.dishes.all %}
    <hr>
-   <p class="text-muted"><strong>Id:</strong> {{dish.id}}</p>
+   <strong><a href="{% url "kitchen:dish-detail" pk=dish.id %}">ID: {{ dish.id }}</a></strong>
+   <br>
    <p><strong>Name:</strong> {{ dish }}</p>
    <p><strong>Description:</strong> {{ dish.description }}</p>
    {% empty %}
