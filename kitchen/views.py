@@ -45,3 +45,8 @@ class DishTypeUpdateView(generic.UpdateView):
     fields = "__all__"
     paginate_by = 7
     success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishTypeDeleteView(generic.DeleteView):
+    model = DishType
+    success_url = reverse_lazy("kitchen:dish-type-list")
