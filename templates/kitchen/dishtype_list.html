@@ -11,17 +11,21 @@
 
   {% if dishtype_list %}
     <form action="" method="get" class="form-inline">
-    {{ search_form|crispy }}
-    <input type="submit" value="🔍" class="btn btn-secondary">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔍" class="btn btn-secondary">
     </form>
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
       {% for dishtype in dishtype_list %}
         <tr>
           <td>
@@ -42,6 +46,8 @@
               </a>
             </td>
         </tr>
+      </tbody>
+
       {% endfor %}
     </table>
 

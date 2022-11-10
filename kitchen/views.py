@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm, CookUpdateForm, DishTypeSearchForm, DishSearchForm
+from kitchen.forms import CookCreationForm, CookUpdateForm, DishTypeSearchForm, DishSearchForm, CookSearchForm
 from kitchen.models import Cook, Dish, DishType
 
 
@@ -28,7 +28,6 @@ def index(request):
 
 class DishTypeListView(generic.ListView):
     model = DishType
-    template_name = "kitchen/dishtype_list.html"
     paginate_by = 5
     queryset = DishType.objects.all()
 
@@ -56,14 +55,12 @@ class DishTypeListView(generic.ListView):
 class DishTypeCreateView(generic.CreateView):
     model = DishType
     fields = "__all__"
-    paginate_by = 7
     success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishTypeUpdateView(generic.UpdateView):
     model = DishType
     fields = "__all__"
-    paginate_by = 7
     success_url = reverse_lazy("kitchen:dish-type-list")
 
 
@@ -98,6 +95,10 @@ class DishListView(generic.ListView):
         return self.queryset
 
 
+class DishDetailView(generic.DetailView):
+    model = Dish
+
+
 class DishCreateView(generic.CreateView):
     model = Dish
     success_url = reverse_lazy("kitchen:dish-list")
@@ -115,14 +116,30 @@ class DishDeleteView(generic.DeleteView):
     success_url = reverse_lazy("kitchen:dish-list")
 
 
-class DishDetailView(generic.DetailView):
-    model = Dish
-
-
 class CookListView(generic.ListView):
     model = Cook
-    paginate_by = 7
+    paginate_by = 5
     queryset = Cook.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        username = self.request.GET.get("username", "")
+
+        context = super(CookListView, self).get_context_data(**kwargs)
+        context["search_form"] = CookSearchForm(initial={
+            "username": username
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = CookSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+
+        return self.queryset
 
 
 class CookCreateView(generic.CreateView):
