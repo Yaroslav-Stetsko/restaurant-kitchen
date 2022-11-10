@@ -2,7 +2,7 @@ from django.urls import path
 
 from kitchen.views import index, DishTypeListView, DishTypeCreateView, DishTypeUpdateView, DishTypeDeleteView, \
     DishListView, DishCreateView, DishUpdateView, DishDeleteView, DishDetailView, CookListView, CookCreateView, \
-    CookDetailView, CookUpdateView
+    CookDetailView, CookUpdateView, CookDeleteView
 
 urlpatterns = [
     path("", index, name="index"),
