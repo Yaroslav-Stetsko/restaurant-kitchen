@@ -12,14 +12,17 @@
    {{ search_form|crispy }}
    <input type="submit" value="🔍" class="btn btn-secondary">
 </form>
-<table class="table">
-   <tr>
+<table class="table table-striped">
+    <thead>
+      <tr>
       <th>ID</th>
       <th>Username</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Years of experience</th>
-   </tr>
+      </tr>
+    </thead>
+
    {% for cook in cook_list %}
    <tr>
       <td>{{ cook.id }}</td>
