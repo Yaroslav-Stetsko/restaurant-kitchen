@@ -1,7 +1,7 @@
 from django.urls import path
 
 from kitchen.views import index, DishTypeListView, DishTypeCreateView, DishTypeUpdateView, DishTypeDeleteView, \
-    DishListView, DishCreateView
+    DishListView, DishCreateView, DishUpdateView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -27,6 +27,8 @@ urlpatterns = [
     ),
     path("dishes/", DishListView.as_view(), name="dish-list"),
     path("dishes/create/", DishCreateView.as_view(), name="dish-create"),
+    path("dishes/<int:pk>/update/", DishUpdateView.as_view(), name="dish-update"),
+    path("dishes/<int:pk>/delete/", DishDeleteView.as_view(), name="dish-delete"),
 
 ]
 
