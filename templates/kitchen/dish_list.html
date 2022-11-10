@@ -1,43 +1,38 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
-
 {% block content %}
-  <h1>
-    Dish list
-    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-
-  {% if dish_list %}
-    <form action="" method="get" class="form-inline">
-      {{ search_form|crispy }}
-      <input type="submit" value="🔍" class="btn btn-secondary">
-    </form>
-
-    <table class="table">
-      <thead>
+<h1>
+   Dish list
+   <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
+   Create
+   </a>
+</h1>
+{% if dish_list %}
+<form action="" method="get" class="form-inline">
+   {{ search_form|crispy }}
+   <input type="submit" value="🔍" class="btn btn-secondary">
+</form>
+<table class="table">
+   <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Dish Type</th>
-        <th>Price</th>
+         <th>ID</th>
+         <th>Name</th>
+         <th>Dish Type</th>
+         <th>Price</th>
       </tr>
-      </thead>
-
-      <tbody>
+   </thead>
+   <tbody>
       {% for dish in dish_list %}
-        <tr>
-          <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.id }}</a></td>
-          <td>{{ dish.name }}</td>
-          <td>{{ dish.dish_type }}</td>
-          <td>{{ dish.price }}</td>
-        </tr>
+      <tr>
+         <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.id }}</a></td>
+         <td>{{ dish.name }}</td>
+         <td>{{ dish.dish_type }}</td>
+         <td>{{ dish.price }}</td>
+      </tr>
       {% endfor %}
-      </tbody>
-    </table>
-
-  {% else %}
-    <p>There are no dishes in restaurant kitchen</p>
-  {% endif %}
+   </tbody>
+</table>
+{% else %}
+<p>There are no dishes in restaurant kitchen</p>
+{% endif %}
 {% endblock %}

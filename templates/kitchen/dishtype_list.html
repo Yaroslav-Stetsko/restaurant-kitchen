@@ -1,57 +1,51 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
-
 {% block content %}
-  <h1>
-    Dish Types
-    <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-
-  {% if dishtype_list %}
-    <form action="" method="get" class="form-inline">
-      {{ search_form|crispy }}
-      <input type="submit" value="🔍" class="btn btn-secondary">
-    </form>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-
-      <tbody>
+<h1>
+   Dish Types
+   <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">
+   Create
+   </a>
+</h1>
+{% if dishtype_list %}
+<form action="" method="get" class="form-inline">
+   {{ search_form|crispy }}
+   <input type="submit" value="🔍" class="btn btn-secondary">
+</form>
+<table class="table">
+   <thead>
+      <tr>
+         <th>ID</th>
+         <th>Name</th>
+         <th>Update</th>
+         <th>Delete</th>
+      </tr>
+   </thead>
+   <tbody>
       {% for dishtype in dishtype_list %}
-        <tr>
-          <td>
-              {{ dishtype.id }}
-          </td>
-          <td>
-              {{ dishtype.name }}
-          </td>
-          <td>
-              <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id%}">
-                Update
-              </a>
-            </td>
-            <td>
-              <a style="color: red"
-                href="{% url 'kitchen:dish-type-delete' pk=dishtype.id%}">
-                Delete
-              </a>
-            </td>
-        </tr>
-      </tbody>
-
-      {% endfor %}
-    </table>
-
-  {% else %}
-      <p>There are no dish types in the kitchen.</p>
-  {% endif %}
+      <tr>
+         <td>
+            {{ dishtype.id }}
+         </td>
+         <td>
+            {{ dishtype.name }}
+         </td>
+         <td>
+            <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id%}">
+            Update
+            </a>
+         </td>
+         <td>
+            <a style="color: red"
+               href="{% url 'kitchen:dish-type-delete' pk=dishtype.id%}">
+            Delete
+            </a>
+         </td>
+      </tr>
+   </tbody>
+   {% endfor %}
+</table>
+{% else %}
+<p>There are no dish types in the kitchen.</p>
+{% endif %}
 {% endblock %}
