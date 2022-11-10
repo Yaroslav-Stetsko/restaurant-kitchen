@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm, CookUpdateForm
+from kitchen.forms import CookCreationForm, CookUpdateForm, DishTypeSearchForm, DishSearchForm
 from kitchen.models import Cook, Dish, DishType
 
 
@@ -32,6 +32,26 @@ class DishTypeListView(generic.ListView):
     paginate_by = 5
     queryset = DishType.objects.all()
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        name = self.request.GET.get("name", "")
+
+        context = super(DishTypeListView, self).get_context_data(**kwargs)
+        context["search_form"] = DishTypeSearchForm(initial={
+            "name": name
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = DishTypeSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
+
 
 class DishTypeCreateView(generic.CreateView):
     model = DishType
@@ -56,6 +76,26 @@ class DishListView(generic.ListView):
     model = Dish
     paginate_by = 5
     queryset = Dish.objects.all().select_related("dish_type")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        name = self.request.GET.get("name", "")
+
+        context = super(DishListView, self).get_context_data(**kwargs)
+        context["search_form"] = DishSearchForm(initial={
+            "name": name
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = DishSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class DishCreateView(generic.CreateView):
