@@ -22,9 +22,9 @@
       <h4>Dishes</h4>
         {% for dish in cook.dishes.all %}
         <hr>
-        <p><strong>Name:</strong> {{ dish }}</p>
-        <p><strong>Description:</strong> {{ dish.description }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{dish.id}}</p>
+          <p class="text-muted"><strong>Id:</strong> {{dish.id}}</p>
+          <p><strong>Name:</strong> {{ dish }}</p>
+          <p><strong>Description:</strong> {{ dish.description }}</p>
       {% empty %}
         <p>No dishes!</p>
     {% endfor %}
