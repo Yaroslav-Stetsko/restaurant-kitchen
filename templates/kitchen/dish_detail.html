@@ -18,7 +18,17 @@
 <h3>Price</h3>
 <p class="ml-3">{{ dish.price }}</p>
 <hr>
-<h3>Cooks</h3>
+<h3>Cooks
+{% if user in dish.cooks.all %}
+    <a href="{% url 'kitchen:manage-cook' pk=dish.id %}" class="btn btn-danger link-to-page">
+    Delete me from this dish
+    </a>
+  {% else %}
+    <a href="{% url 'kitchen:manage-cook' pk=dish.id %}" class="btn btn-success link-to-page">
+    Assign me to this dish
+    </a>
+{% endif %}
+</h3>
 <ul>
    {% for cook in dish.cooks.all %}
    <li>{{ cook.first_name }} {{ cook.last_name }}</li>
