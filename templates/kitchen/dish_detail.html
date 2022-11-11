@@ -1,37 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>
-   {{ dish.name }}
-   <a href="{% url 'kitchen:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
-   Delete
-   </a>
-   <a href="{% url 'kitchen:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
-   Edit
-   </a>
-</h1>
+<h1>{{ dish.name }}</h1>
 <p class="ml-3"><strong>Dish Type:</strong> {{ dish.dish_type.name }}</p>
+<div>
+  {% if user in dish.cooks.all %}
+  <a href="{% url 'kitchen:manage-cook' pk=dish.id %}" class="btn btn-outline-danger my-2 my-sm-0">
+  Delete me from this dish
+  </a>
+  {% else %}
+  <a href="{% url 'kitchen:manage-cook' pk=dish.id %}" class="btn btn-outline-success my-2 my-sm-0">
+  Assign me to this dish
+  </a>
+  {% endif %}
+</div>
+
 <hr>
 <h3>Description</h3>
 <p class="ml-3">{{ dish.description }}</p>
 <hr>
-<h3>Price</h3>
-<p class="ml-3">{{ dish.price }}</p>
+
+<h3>Price: {{ dish.price }} </h3>
+
 <hr>
-<h3>Cooks
-{% if user in dish.cooks.all %}
-    <a href="{% url 'kitchen:manage-cook' pk=dish.id %}" class="btn btn-danger link-to-page">
-    Delete me from this dish
-    </a>
-  {% else %}
-    <a href="{% url 'kitchen:manage-cook' pk=dish.id %}" class="btn btn-success link-to-page">
-    Assign me to this dish
-    </a>
-{% endif %}
-</h3>
-<ul>
-   {% for cook in dish.cooks.all %}
-   <li>{{ cook.first_name }} {{ cook.last_name }}</li>
-   {% endfor %}
-</ul>
+
+<h3>Cooks</h3>
+  <table class="table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+      </tr>
+    {% for cook in dish.cooks.all %}
+      <tr>
+        <td><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.id }} </a></td>
+        <td>{{ cook.username }} </td>
+        <td>{{ cook.first_name }}</td>
+        <td>{{ cook.last_name }}</td>
+        <td>{{ cook.years_of_experience }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+    <div>
+    <a href="{% url 'kitchen:dish-delete' pk=dish.id %}" class="btn btn-outline-danger my-2 my-sm-0">
+   Delete
+   </a>
+
+   <a href="{% url 'kitchen:dish-update' pk=dish.id %}" class="btn btn-outline-success my-2 my-sm-0">
+   Edit
+   </a>
+  </div>
 {% endblock %}

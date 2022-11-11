@@ -1,20 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Cook
-   <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-danger link-to-page">
-   Delete
-   </a>
-   <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-secondary link-to-page">
-   Edit
-   </a>
-</h1>
-<div class="ml-3">
+<h1>Cook</h1>
+<div>
    <p><strong>Username:</strong> {{ cook.username }}</p>
    <p><strong>First name:</strong> {{ cook.first_name }}</p>
    <p><strong>Last name:</strong> {{ cook.last_name }}</p>
    <p><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
    <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
 </div>
+
 <div>
    <h4>Dishes</h4>
    <div class="ml-3">
@@ -30,4 +24,13 @@
    </div>
 
 </div>
+<div>
+  <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-outline-danger my-2 my-sm-0">
+  Delete
+  </a>
+  <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-outline-success my-2 my-sm-0">
+  Edit
+  </a>
+</div>
+
 {% endblock %}

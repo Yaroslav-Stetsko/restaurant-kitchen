@@ -5,7 +5,7 @@
   <form action="" method="post">
     {% csrf_token %}
 
-    <input type="submit" value="Yes" class="btn btn-danger">
-    <a href="{% url 'kitchen:dish-list' %}" class="btn btn-secondary">Cancel</a>
+    <input type="submit" value="Yes" class="btn btn-outline-danger my-2 my-sm-0">
+    <a href="{% url 'kitchen:dish-list' %}" class="btn btn-outline-success my-2 my-sm-0">Cancel</a>
   </form>
 {% endblock %}

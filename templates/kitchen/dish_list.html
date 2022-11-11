@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="text-center">
    Dish list
-   <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
+   <a href="{% url 'kitchen:dish-create' %}" class="btn btn-outline-primary my-2 my-sm-0 link-to-page">
    Create
    </a>
 </h1>
@@ -19,11 +19,9 @@
          <th>Name</th>
          <th>Dish Type</th>
          <th>Price</th>
-      </tr>
    </thead>
    <tbody>
       {% for dish in dish_list %}
-      <tr>
          <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.id }}</a></td>
          <td>{{ dish.name }}</td>
          <td>{{ dish.dish_type }}</td>

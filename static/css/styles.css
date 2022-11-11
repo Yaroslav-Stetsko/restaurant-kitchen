@@ -1,8 +1,24 @@
-body {
-    margin-top: 20px;
-}
-
 .link-to-page {
     float: right;
     margin: 0 2px 0 2px;
+}
+body {
+    background-image: url("https://img.freepik.com/free-photo/juicy-steak-medium-rare-beef-with-spices-tomatoes-asparagus_2829-11262.jpg?w=1380&t=st=1668167927~exp=1668168527~hmac=c71e57733e0a1963106777d80a2c1bd94b7047466aed32e86448194507a6a5db");
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bg-text {
+    background-color: rgb(252, 227, 116);
+    background-color: rgba(249, 255, 250, 0.7);
+    color: #420101;
+    font-weight: bold;
+    border: 3px solid #f82020;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
 }

@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="text-center">
    Dish Types
-   <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">
+   <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-outline-primary my-2 my-sm-0 link-to-page">
    Create
    </a>
 </h1>
@@ -24,19 +24,15 @@
 
       {% for dishtype in dishtype_list %}
       <tr>
+         <td>{{ dishtype.id }}</td>
+         <td>{{ dishtype.name }}</td>
          <td>
-            {{ dishtype.id }}
-         </td>
-         <td>
-            {{ dishtype.name }}
-         </td>
-         <td>
-            <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id%}">
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'kitchen:dish-type-update' pk=dishtype.id%}">
             Update
             </a>
          </td>
          <td>
-            <a style="color: red"
+            <a class="btn btn-outline-danger my-2 my-sm-0"style="color: red"
                href="{% url 'kitchen:dish-type-delete' pk=dishtype.id%}">
             Delete
             </a>
