@@ -17,17 +17,21 @@
    </head>
    <body class="background-image">
       <div>
-        <div style="width: 100%; height: 20%">
           {% block sidebar %}
-            {% include "includes/sidebar.html" %}
+            <div style="width: 100%; height: 20%">
+              {% include "includes/sidebar.html" %}
+            </div>
           {% endblock %}
-        </div>
-        <div class="bg-text">
-          {% block content %}{% endblock %}
+
+
+          {% block content %}
+
+          {% endblock %}
+
           {% block pagination %}
             {% include "includes/pagination.html" %}
           {% endblock %}
-        </div>
+
       </div>
    </body>
 </html>

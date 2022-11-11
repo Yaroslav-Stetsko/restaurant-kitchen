@@ -1,29 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Cook</h1>
-<div>
-   <p><strong>Username:</strong> {{ cook.username }}</p>
-   <p><strong>First name:</strong> {{ cook.first_name }}</p>
-   <p><strong>Last name:</strong> {{ cook.last_name }}</p>
-   <p><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
-   <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
-</div>
-
-<div>
+  <div class="bg-text">
+    <h1>Cook</h1>
+    <div>
+     <p><strong>Username:</strong> {{ cook.username }}</p>
+     <p><strong>First name:</strong> {{ cook.first_name }}</p>
+     <p><strong>Last name:</strong> {{ cook.last_name }}</p>
+     <p><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
+     <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+    </div>
+    <div>
    <h4>Dishes</h4>
-   <div class="ml-3">
-   {% for dish in cook.dishes.all %}
-   <hr>
-   <strong><a href="{% url "kitchen:dish-detail" pk=dish.id %}">ID: {{ dish.id }}</a></strong>
-   <br>
-   <p><strong>Name:</strong> {{ dish }}</p>
-   <p><strong>Description:</strong> {{ dish.description }}</p>
-   {% empty %}
-   <p>No dishes!</p>
-   {% endfor %}
-   </div>
+    <table class="table table-striped">
+       <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Dish Type</th>
+            <th>Price</th>
+          </tr>
+       </thead>
+       {% for dish in cook.dishes.all %}
+          <tr>
+             <td><a href="{% url "kitchen:dish-detail" pk=dish.id %}">ID: {{ dish.id }}</a></td>
+             <td>{{ dish.name }}</td>
+             <td>{{ dish.dish_type.name }}</td>
+             <td>{{ dish.price }}</td>
 
-</div>
+          </tr>
+       {% endfor %}
+    </table>
+  </div>
 <div>
   <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-outline-danger my-2 my-sm-0">
   Delete
@@ -32,5 +39,7 @@
   Edit
   </a>
 </div>
+
+  </div>
 
 {% endblock %}
