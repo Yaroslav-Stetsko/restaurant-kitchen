@@ -1,5 +1,3 @@
-from django.test import TestCase
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
@@ -20,7 +18,9 @@ class ModelTests(TestCase):
             last_name="Test last name",
         )
 
-        self.assertEqual(str(cook), f"{cook.username} ({cook.first_name} {cook.last_name})")
+        self.assertEqual(str(cook),
+                         f"{cook.username} ({cook.first_name}"
+                         f" {cook.last_name})")
 
     def test_dish_str(self):
         dish_type = DishType.objects.create(name="Test")
