@@ -11,7 +11,7 @@ DISH_URL = reverse("kitchen:dish-list")
 DISH_CREATE_URL = reverse("kitchen:dish-create")
 
 
-class PrivateDriverTests(TestCase):
+class PrivateCookTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create(
             username="test",
@@ -127,14 +127,14 @@ class PrivateDishTypeTests(TestCase):
         self.assertEqual(DishType.objects.count(), 1)
 
 
-class PublicManufacturerTests(TestCase):
+class PublicDishTypeTests(TestCase):
     def test_login_required(self):
         response = self.client.get(DISH_URL)
 
         self.assertNotEqual(response.status_code, 200)
 
 
-class PrivateManufacturerTests(TestCase):
+class PrivateDishTypeTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="test",

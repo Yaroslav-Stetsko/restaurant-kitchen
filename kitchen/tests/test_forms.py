@@ -33,7 +33,7 @@ class CookFormTest(TestCase):
         self.assertNotEqual(form.cleaned_data, form_data)
 
 
-class DriverUpdateTest(TestCase):
+class CookUpdateTest(TestCase):
     def test_cook_update_form_valid(self):
         new_cook = get_user_model().objects.create_user(
             username="new_user",

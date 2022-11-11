@@ -22,7 +22,7 @@ class ModelTests(TestCase):
 
         self.assertEqual(str(cook), f"{cook.username} ({cook.first_name} {cook.last_name})")
 
-    def test_car_str(self):
+    def test_dish_str(self):
         dish_type = DishType.objects.create(name="Test")
         dish = Dish.objects.create(
             name="Test",
