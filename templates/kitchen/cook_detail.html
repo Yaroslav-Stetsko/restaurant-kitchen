@@ -3,48 +3,48 @@
   <div class="bg-text">
     <h1>Cook</h1>
     <div>
-     <p><strong>Username:</strong> {{ cook.username }}</p>
-     <p><strong>First name:</strong> {{ cook.first_name }}</p>
-     <p><strong>Last name:</strong> {{ cook.last_name }}</p>
-     <p><strong>Experience:</strong>
-       {% if cook.years_of_experience %}
-         {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }}
-       {% else %}
-         {{ cook.years_of_experience }}
-       {% endif %}
-     </p>
-     <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+      <p><strong>Username:</strong> {{ cook.username }}</p>
+      <p><strong>First name:</strong> {{ cook.first_name }}</p>
+      <p><strong>Last name:</strong> {{ cook.last_name }}</p>
+      <p><strong>Experience:</strong>
+        {% if cook.years_of_experience %}
+          {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }}
+        {% else %}
+          {{ cook.years_of_experience }}
+        {% endif %}
+      </p>
+      <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
     </div>
     <div>
-   <h4>Dishes</h4>
-    <table class="table table-striped">
-       <thead>
+      <h4>Dishes</h4>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Dish Type</th>
+          <th>Price</th>
+        </tr>
+        </thead>
+        {% for dish in cook.dishes.all %}
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Dish Type</th>
-            <th>Price</th>
-          </tr>
-       </thead>
-       {% for dish in cook.dishes.all %}
-          <tr>
-             <td><a href="{% url "kitchen:dish-detail" pk=dish.id %}">ID: {{ dish.id }}</a></td>
-             <td>{{ dish.name }}</td>
-             <td>{{ dish.dish_type.name }}</td>
-             <td>{{ dish.price }}</td>
+            <td><a href="{% url "kitchen:dish-detail" pk=dish.id %}">ID: {{ dish.id }}</a></td>
+            <td>{{ dish.name }}</td>
+            <td>{{ dish.dish_type.name }}</td>
+            <td>{{ dish.price }}</td>
 
           </tr>
-       {% endfor %}
-    </table>
-  </div>
-<div>
-  <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-outline-danger my-2 my-sm-0">
-  Delete
-  </a>
-  <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-outline-success my-2 my-sm-0">
-  Edit
-  </a>
-</div>
+        {% endfor %}
+      </table>
+    </div>
+    <div>
+      <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-outline-danger my-2 my-sm-0">
+        Delete
+      </a>
+      <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-outline-success my-2 my-sm-0">
+        Edit
+      </a>
+    </div>
 
   </div>
 
