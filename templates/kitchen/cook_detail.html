@@ -6,7 +6,13 @@
      <p><strong>Username:</strong> {{ cook.username }}</p>
      <p><strong>First name:</strong> {{ cook.first_name }}</p>
      <p><strong>Last name:</strong> {{ cook.last_name }}</p>
-     <p><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
+     <p><strong>Experience:</strong>
+       {% if cook.years_of_experience %}
+         {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }}
+       {% else %}
+         {{ cook.years_of_experience }}
+       {% endif %}
+     </p>
      <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
     </div>
     <div>
