@@ -8,6 +8,8 @@ body {
 
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+
 }
 .bg-text {
     background-color: rgb(252, 227, 116);
