@@ -42,20 +42,22 @@ urlpatterns = [
     ),
     path("dishes/",
          DishListView.as_view(),
-         name="dish-list"
+         name="dish-list",
          ),
-    path("dishes/<int:pk>/",
-         DishDetailView.as_view(),
-         name="dish-detail"
-         ),
-    path("dishes/create/",
-         DishCreateView.as_view(),
-         name="dish-create"
-         ),
+    path(
+        "dishes/<int:pk>/",
+        DishDetailView.as_view(),
+        name="dish-detail",
+    ),
+    path(
+        "dishes/create/",
+        DishCreateView.as_view(),
+        name="dish-create",
+    ),
     path(
         "dishes/<int:pk>/update/",
         DishUpdateView.as_view(),
-        name="dish-update"
+        name="dish-update",
     ),
     path(
         "dishes/<int:pk>/delete/",
@@ -64,32 +66,32 @@ urlpatterns = [
     path(
         "cooks/",
         CookListView.as_view(),
-        name="cook-list"
+        name="cook-list",
     ),
     path(
         "cooks/create/",
         CookCreateView.as_view(),
-        name="cook-create"
+        name="cook-create",
     ),
     path(
         "cooks/<int:pk>/",
         CookDetailView.as_view(),
-        name="cook-detail"
+        name="cook-detail",
     ),
     path(
         "cooks/<int:pk>/update/",
         CookUpdateView.as_view(),
-        name="cook-update"
+        name="cook-update",
     ),
     path(
         "cooks/<int:pk>/delete/",
         CookDeleteView.as_view(),
-        name="cook-delete"
+        name="cook-delete",
     ),
     path(
         "cooks/<int:pk>/manage_cook/",
         manage_cook,
-        name="manage-cook"
+        name="manage-cook",
     ),
 
 ]
