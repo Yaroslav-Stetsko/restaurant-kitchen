@@ -5,9 +5,9 @@
 body {
     background-image: url("https://wallpaper.dog/large/20491982.jpg");
     height: 100%;
-
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 .bg-text {
     background-color: rgb(252, 227, 116);
