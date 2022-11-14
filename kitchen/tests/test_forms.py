@@ -13,7 +13,7 @@ class CookFormTest(TestCase):
             "password2": "test3user123",
             "years_of_experience": 12,
             "first_name": "First",
-            "last_name": "Last"
+            "last_name": "Last",
         }
         form = CookCreationForm(data=form_data)
         self.assertTrue(form.is_valid())
@@ -26,7 +26,7 @@ class CookFormTest(TestCase):
             "password2": "test3user123",
             "years_of_experience": "12",
             "first_name": "First",
-            "last_name": "Last"
+            "last_name": "Last",
         }
         form = CookCreationForm(data=form_data)
         self.assertTrue(form.is_valid())
@@ -40,25 +40,23 @@ class CookUpdateTest(TestCase):
             password="test3user123",
             years_of_experience=12,
             first_name="Testingtest",
-            last_name="Testingtesttesttest"
+            last_name="Testingtesttesttest",
         )
         self.client.force_login(new_cook)
         update_data = {
             "years_of_experience": 12,
             "first_name": "Testingtest",
             "last_name": "Testingtesttesttest",
-
         }
 
-        self.client.post(reverse(
-            "kitchen:cook-update",
-            kwargs={"pk": new_cook.id}),
-            data=update_data)
+        self.client.post(
+            reverse("kitchen:cook-update", kwargs={"pk": new_cook.id}),
+            data=update_data,
+        )
 
         cook = get_user_model().objects.get(pk=new_cook.id)
         self.assertEqual(
-            cook.years_of_experience,
-            update_data["years_of_experience"]
+            cook.years_of_experience, update_data["years_of_experience"]
         )
         self.assertEqual(cook.first_name, update_data["first_name"])
         self.assertEqual(cook.last_name, update_data["last_name"])

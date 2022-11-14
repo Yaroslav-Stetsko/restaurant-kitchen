@@ -18,17 +18,14 @@ class ModelTests(TestCase):
             last_name="Test last name",
         )
 
-        self.assertEqual(str(cook),
-                         f"{cook.username} ({cook.first_name}"
-                         f" {cook.last_name})")
+        self.assertEqual(
+            str(cook),
+            f"{cook.username} ({cook.first_name}" f" {cook.last_name})",
+        )
 
     def test_dish_str(self):
         dish_type = DishType.objects.create(name="Test")
-        dish = Dish.objects.create(
-            name="Test",
-            dish_type=dish_type,
-            price=12
-        )
+        dish = Dish.objects.create(name="Test", dish_type=dish_type, price=12)
 
         self.assertEqual(str(dish), dish.name)
 
@@ -39,7 +36,7 @@ class ModelTests(TestCase):
         cook = get_user_model().objects.create_user(
             username=username,
             password=password,
-            years_of_experience=years_of_experience
+            years_of_experience=years_of_experience,
         )
 
         self.assertEqual(cook.username, username)
