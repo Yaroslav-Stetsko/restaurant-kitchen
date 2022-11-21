@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+  <div class="bg-text">
+    <h1 class="text-center">
+   Cooks
+   <a href="{% url 'kitchen:cook-create' %}" class="btn btn-outline-primary my-2 my-sm-0 link-to-page">
+   Create
+   </a>
+</h1>
+{% if cook_list %}
+<form action="" method="get" class="form-inline">
+   {{ search_form|crispy }}
+   <input type="submit" value="🔍" class="btn btn-outline-success my-2 my-sm-0">
+</form>
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Experience</th>
+      </tr>
+    </thead>
+
+   {% for cook in cook_list %}
+   <tr>
+      <td>{{ cook.id }}</td>
+      <td><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username }} </a> {% if user == cook %} (Me){% endif %}</td>
+      <td>{{ cook.first_name }}</td>
+      <td>{{ cook.last_name }}</td>
+      {% if cook.years_of_experience %}
+      <td>{{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }}</td>
+      {% else %}
+        <td>{{ cook.years_of_experience }}</td>
+      {% endif %}
+   </tr>
+   {% endfor %}
+</table>
+{% else %}
+<p>There are no cooks in the service.</p>
+{% endif %}
+    {% include "includes/pagination.html" %}
+  </div>
+{% endblock %}
