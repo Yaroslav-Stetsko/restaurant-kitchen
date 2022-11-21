@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+  <div class="bg-text">
+    <h1 class="text-center">
+      Dish Types
+      <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-outline-primary my-2 my-sm-0 link-to-page">
+        Create
+      </a>
+    </h1>
+    {% if dishtype_list %}
+      <form action="" method="get" class="form-inline">
+        {{ search_form|crispy }}
+        <input type="submit" value="🔍" class="btn btn-outline-success my-2 my-sm-0">
+      </form>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+
+        {% for dishtype in dishtype_list %}
+          <tr>
+            <td>{{ dishtype.id }}</td>
+            <td>{{ dishtype.name }}</td>
+            <td>
+              <a class="btn btn-outline-success my-2 my-sm-0"
+                 href="{% url 'kitchen:dish-type-update' pk=dishtype.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a class="btn btn-outline-danger my-2 my-sm-0" style="color: red"
+                 href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>There are no dish types in the kitchen.</p>
+    {% endif %}
+    {% include "includes/pagination.html" %}
+  </div>
+
+{% endblock %}

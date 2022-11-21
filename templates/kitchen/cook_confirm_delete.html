@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="login-windows">
+    <h1>Delete Cook?</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <input type="submit" value="Yes" class="btn btn-outline-danger my-2 my-sm-0">
+      <a href="{% url 'kitchen:dish-list' %}" class="btn btn-outline-success my-2 my-sm-0">Cancel</a>
+    </form>
+  </div>
+
+{% endblock %}
