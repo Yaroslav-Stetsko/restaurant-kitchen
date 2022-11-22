@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
@@ -9,18 +10,19 @@ class DishType(models.Model):
     class Meta:
         ordering = ["id"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField(null=True, blank=True)
+    years_of_experience = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(65)])
 
     class Meta:
         verbose_name = "cook"
         verbose_name_plural = "cooks"
+        ordering = ["id"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
@@ -34,5 +36,8 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook, related_name="dishes")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+
+    class Meta:
+        ordering = ["name"]

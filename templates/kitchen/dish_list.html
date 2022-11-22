@@ -20,14 +20,16 @@
           <th>Name</th>
           <th>Dish Type</th>
           <th>Price</th>
+        </tr>
         </thead>
         <tbody>
+        <tr>
         {% for dish in dish_list %}
-          <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.id }}</a></td>
-          <td>{{ dish.name }}</td>
+          <td>{{ dish.id }}</td>
+          <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a></td>
           <td>{{ dish.dish_type }}</td>
           <td>{{ dish.price }}</td>
-          </tr>
+        </tr>
         {% endfor %}
         </tbody>
       </table>

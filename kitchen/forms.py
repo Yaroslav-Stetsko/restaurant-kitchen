@@ -18,21 +18,6 @@ class CookCreationForm(UserCreationForm):
             "last_name",
         )
 
-    def clean_years_of_experience(self):
-        years_of_experience = self.cleaned_data["years_of_experience"]
-
-        if years_of_experience > CookUpdateForm.MAX_EXP:
-            raise ValidationError(
-                f"Years of experience must be less than {CookUpdateForm.MAX_EXP}"
-            )
-
-        if years_of_experience < CookUpdateForm.MIN_EXP:
-            raise ValidationError(
-                f"Years of experience must be more than {CookUpdateForm.MIN_EXP}"
-            )
-
-        return years_of_experience
-
 
 class CookUpdateForm(forms.ModelForm):
     MIN_EXP = 0
@@ -45,21 +30,6 @@ class CookUpdateForm(forms.ModelForm):
             "first_name",
             "last_name",
         )
-
-    def clean_years_of_experience(self):
-        years_of_experience = self.cleaned_data["years_of_experience"]
-
-        if years_of_experience > CookUpdateForm.MAX_EXP:
-            raise ValidationError(
-                f"Years of experience must be less than {CookUpdateForm.MAX_EXP}"
-            )
-
-        if years_of_experience < CookUpdateForm.MIN_EXP:
-            raise ValidationError(
-                f"Years of experience must be more than {CookUpdateForm.MIN_EXP}"
-            )
-
-        return years_of_experience
 
 
 class CookSearchForm(forms.Form):
