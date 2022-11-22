@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
@@ -14,7 +15,7 @@ class DishType(models.Model):
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField(null=True, blank=True)
+    years_of_experience = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(65)])
 
     class Meta:
         verbose_name = "cook"
